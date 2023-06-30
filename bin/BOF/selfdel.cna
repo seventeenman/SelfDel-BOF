@@ -1,0 +1,29 @@
+beacon_command_register(
+    "SelfDel", "Delete file regardless of whether the handle is used.",
+    "\nDelete file regardless of whether the handle is used via SetFileInformationByHandle.\n\n".
+    "USAGE:\nSelfDel <path to file>\n\n");
+
+alias SelfDel {
+
+    local('$barch $handle $data $args');
+
+    $bid = $1;
+    $path = $2;
+
+    if ($path eq "") {
+        berror($bid, "Please specify the path of file\n");
+        return;
+    }
+
+    # Read in the right BOF file
+    $handle = openf(script_resource("bofSelfDel. $+ $barch $+ .o"));
+    
+    $data   = readb($handle, -1);
+    closef($handle);
+
+    # Pack our arguments
+    $arg_data  = bof_pack($bid, "Z", $path);
+
+    blog($bid, "Tasked to Delete file..");
+    beacon_inline_execute($bid, $data, "go", $arg_data);
+}
