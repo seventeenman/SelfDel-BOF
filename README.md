@@ -4,7 +4,7 @@
 
 ### usage
 
-指定要删除文件路径即可。
+输入参数"self"或者指定要删除文件路径即可。
 
 ```
 beacon> help SelfDel
@@ -12,7 +12,7 @@ beacon> help SelfDel
 Delete files regardless of handle occupation via SetFileInformationByHandle.
 
 USAGE:
-SelfDel <path to file>
+SelfDel <self / path to file>
 ```
 
 ![](assets/2023-07-01-01-23-00-image.png)
